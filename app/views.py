@@ -12,8 +12,13 @@ import sklearn.svm
 import werkzeug
 from flask import render_template,request,redirect,url_for,send_from_directory
 
+import MySQLdb as mdb
+
 allowed_extensions = set(['jpg'])
 upload_folder = "/Users/novak/Desktop/Insight/app-pbot/app/uploads"
+
+db = mdb.connect(user="root", host="localhost", db="photobot", charset='utf8', 
+                 passwd='small irony yacht wok')
 
 # load the data
 with open('demo-day-svm.pkl') as ff: 
@@ -86,6 +91,19 @@ def uploaded_file():
 @app.route('/uploads/<filename>')
 def uploads(filename):
     return send_from_directory(upload_folder,filename)
+
+@app.route('/train', methods=['GET'])
+def train():
+    image = request.args.get("filename")
+    prediction = request.args.get("photobot")
+    success = request.args.get("agree")
+    # Stuff these into a sql database
+    with db:
+        cur = db.cursor()
+        print "insert into responses (filename, prediction, correct) values ('%s' %s %s);" % (image, prediction, success)
+        cur.execute("insert into responses (filename, prediction, correct) values ('%s', %s, %s);" % (image, prediction, success))
+
+    return render_template("train.html")
 
 def ims_to_rgb_vecs(ims, downsample=1):
     # include color, make vector in dumbest way possible
