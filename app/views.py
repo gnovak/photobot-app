@@ -10,7 +10,7 @@ import sklearn as skl
 import sklearn.svm
 
 import werkzeug
-from flask import render_template,request,redirect,url_for
+from flask import render_template,request,redirect,url_for,send_from_directory
 
 allowed_extensions = set(['jpg'])
 upload_folder = "/Users/novak/Desktop/Insight/app-pbot/app/uploads"
@@ -82,6 +82,10 @@ def uploaded_file():
     url = '/uploads/' + blargh
     return render_template("response.html", resp=resp, respbool=respbool,
                            imageurl=url, filename=blargh)
+
+@app.route('/uploads/<filename>')
+def uploads(filename):
+    return send_from_directory(upload_folder,filename)
 
 def ims_to_rgb_vecs(ims, downsample=1):
     # include color, make vector in dumbest way possible
