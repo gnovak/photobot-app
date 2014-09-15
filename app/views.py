@@ -2,6 +2,7 @@ from app import app
 
 import os.path
 import subprocess
+import cPickle
 
 import numpy as np
 import skimage as ski
