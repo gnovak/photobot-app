@@ -1,3 +1,7 @@
 *.pyc
 app/uploads/
-app/static/
+app/static/css
+app/static/fonts
+app/static/images
+app/static/js
+
