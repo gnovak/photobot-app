@@ -94,8 +94,17 @@
       Dropzone.options.myAwesomeDropzone = {
         init: function() {
           this.on("addedfile", function(file) { console.log(file); });
-          this.on("success", function(file,response) { 
-            $("#good-1").attr("src", "http://localhost:5000/uploads/" + file.name)
+          this.on("success", function(file,response) {
+            if (response == "good") {
+              $("#good-1").attr("src", "http://localhost:5000/uploads/" + file.name)
+            }
+            else if (response == "bad") {
+              $("#bad-1").attr("src", "http://localhost:5000/uploads/" + file.name)
+            }
+            else {
+              // uh oh
+            }
+            console.log(response)
           });
         }
       };

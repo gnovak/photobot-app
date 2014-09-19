@@ -26,8 +26,8 @@ db = mdb.connect(user="root", host="localhost", db="photobot", charset='utf8',
                  passwd='small irony yacht wok')
 
 # load the data
-# with open('demo-day-svm.pkl') as ff:
-#     svm = cPickle.load(ff)
+with open('demo-day-svm.pkl') as ff:
+    svm = cPickle.load(ff)
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -106,22 +106,12 @@ def uploaded_file():
     vv = ims_to_rgb_vecs(im,downsample=256)
 
     # classify it
-    # result = svm.predict(vv)[0]
-    print "Classification disabled"
-    result = 1
+    result = svm.predict(vv)[0]
 
-    # say something amusing
-    if result > 0.5 :
-        resp = "pretty good!"
-        respbool = "TRUE"
-    else:
-        resp = "lame!"
-        respbool = "FALSE"
-
-    # show the file
-    url = '/uploads/' + filename
-    return render_template("response.html", resp=resp, respbool=respbool,
-                           imageurl=url, filename=base)
+    # No one sees this page, classification decision is gobbled up by java script.
+    if result > 0.5: response = "good"
+    else: response = "bad"
+    return response
 
 @app.route('/uploads/<filename>')
 def uploads(filename):
