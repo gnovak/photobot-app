@@ -59,12 +59,11 @@
 
         <br><br>
         <form enctype="multipart/form-data" action="flask-upload"
-              class="lead" id="demo-flask-upload" method="POST">
-          <input type="file" name="file">
-          <br>
-          <button type="submit" name="bar" class="btn btn large btn-success">Submit</button>            
-          </form>
-
+              class="dropzone" method="POST" id="demo-flask-upload"
+              id="my-awesome-dropzone">
+          <!-- <input type="file" name="file"> -->
+          <!-- <button type="submit" name="bar" class="btn btn large btn-success">Submit</button> -->
+        </form>
       </div>
     </div><!-- /.container -->
 
@@ -72,6 +71,7 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../static/js/dropzone.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="../static/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
