@@ -114,10 +114,15 @@
 
       <div class="starter-template">
         <div class="row row-left">
-          <div class="col-md-3 text-left">
+          <h3>Drop photos anywhere on the page and PhotoBot will help
+          you sort the good ones from the bad ones!</h3>            
+          </div>
+        </div>
+        <div class="row row-left">
+          <div class="col-sm-3 text-left">
             <img src="../static/images/HAL9000.svg.png" alt="HAL" height="150" width="150">
           </div>
-          <div class="col-md-6 col-left">
+          <div class="col-sm-6 col-left">
             <h3 class="text-left">Good Photos</h3><br>
             <img id="good-1" >
             <img id="good-2" >
@@ -126,50 +131,11 @@
             <img id="good-5" >
           </div>
         </div>
-        <div class="row">
-        </div>
-        <div class="row">
-          <div class="col-md-3 text-left">
-            <!-- <form enctype="multipart/form-data" action="flask-upload" -->
-            <!--       class="dropzone" method="POST" id="my-awesome-dropzone"> -->
-            <!-- </form> -->
-    <div class="table table-striped" class="files" id="previews">
-
-      <div id="template" class="file-row">
-        <!-- This is used as the file preview template -->
-        <div>
-            <span class="preview"><img data-dz-thumbnail /></span>
-        </div>
-        <div>
-            <p class="name" data-dz-name></p>
-            <strong class="error text-danger" data-dz-errormessage></strong>
-        </div>
-        <div>
-            <p class="size" data-dz-size></p>
-            <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-              <div class="progress-bar progress-bar-success" style="width:0%;" data-dz-uploadprogress></div>
-            </div>
-        </div>
-        <div>
-          <!-- <button class="btn btn-primary start"> -->
-          <!--     <i class="glyphicon glyphicon-upload"></i> -->
-          <!--     <span>Start</span> -->
-          <!-- </button> -->
-          <!-- <button data-dz-remove class="btn btn-warning cancel"> -->
-          <!--     <i class="glyphicon glyphicon-ban-circle"></i> -->
-          <!--     <span>Cancel</span> -->
-          <!-- </button> -->
-          <!-- <button data-dz-remove class="btn btn-danger delete"> -->
-          <!--   <i class="glyphicon glyphicon-trash"></i> -->
-          <!--   <span>Delete</span> -->
-          <!-- </button> -->
-        </div>
-      </div>
-
-    </div>
-            
+        <div class="row row-left">
+          <div class="col-sm-3 text-left">
+            <!-- Empty -->
           </div>
-          <div class="col-md-6">            
+          <div class="col-sm-6">            
             <h3 class="text-left">Bad Photos</h3><br>
             <img id="bad-1" >
             <img id="bad-2" >
@@ -177,6 +143,46 @@
             <img id="bad-4" >        
             <img id="bad-5" >        
           </div>
+        </div>
+
+        <div class="row row-left">
+          <div class="col-sm-3 text-left">
+            <!-- <form enctype="multipart/form-data" action="flask-upload" -->
+            <!--       class="dropzone" method="POST" id="my-awesome-dropzone"> -->
+            <!-- </form> -->
+            <div class="table table-striped" class="files" id="previews">
+              <div id="template" class="file-row">
+                <!-- This is used as the file preview template -->
+                <div>
+                  <span class="preview"><img data-dz-thumbnail /></span>
+                </div>
+                <div>
+                  <p class="name" data-dz-name></p>
+                  <strong class="error text-danger" data-dz-errormessage></strong>
+                </div>
+                <div>
+                  <p class="size" data-dz-size></p>
+                  <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                    <div class="progress-bar progress-bar-success" style="width:0%;" data-dz-uploadprogress></div>
+                  </div>
+                </div>
+                <div>
+                  <!-- <button class="btn btn-primary start"> -->
+                  <!--     <i class="glyphicon glyphicon-upload"></i> -->
+                  <!--     <span>Start</span> -->
+                  <!-- </button> -->
+                  <!-- <button data-dz-remove class="btn btn-warning cancel"> -->
+                  <!--     <i class="glyphicon glyphicon-ban-circle"></i> -->
+                  <!--     <span>Cancel</span> -->
+                  <!-- </button> -->
+                  <!-- <button data-dz-remove class="btn btn-danger delete"> -->
+                  <!--   <i class="glyphicon glyphicon-trash"></i> -->
+                  <!--   <span>Delete</span> -->
+                  <!-- </button> -->
+                </div>
+              </div>
+            </div>            
+          </div>          
         </div>
       </div>
     </div><!-- /.container -->
