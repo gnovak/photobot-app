@@ -67,16 +67,16 @@
 
       <div>
         GOOD
-        <img id='good-1' src="../static/images/HAL9000.svg.png" height="150" width="150">
-        <img id='good-2' src="../static/images/HAL9000.svg.png" height="150" width="150">
-        <img id='good-3' src="../static/images/HAL9000.svg.png" height="150" width="150">
+        <img id='good-1' >
+        <img id='good-2' >
+        <img id='good-3' >
         END GOOD
       </div>
       <div>
         BAD
-        <img id='bad-1' src="../static/images/HAL9000.svg.png" height="150" width="150">
-        <img id='bad-2' src="../static/images/HAL9000.svg.png" height="150" width="150">
-        <img id='bad-3' src="../static/images/HAL9000.svg.png" height="150" width="150">
+        <img id='bad-1' >
+        <img id='bad-2' >
+        <img id='bad-3' >
         END BAD
       </div>
     </div><!-- /.container -->
@@ -96,10 +96,22 @@
           this.on("addedfile", function(file) { console.log(file); });
           this.on("success", function(file,response) {
             if (response == "good") {
-              $("#good-1").attr("src", "http://localhost:5000/uploads/" + file.name)
+              nam = "#good-1"
+              if ($(nam).attr("src") != undefined) {nam = "#good-2";}
+              if ($(nam).attr("src") != undefined) {nam = "#good-3";}
+
+              $(nam).attr("src", "http://localhost:5000/uploads/" + file.name)
+              $(nam).attr("height", "150")
+              $(nam).attr("width", "150")
             }
             else if (response == "bad") {
-              $("#bad-1").attr("src", "http://localhost:5000/uploads/" + file.name)
+              nam = "#bad-1"
+              if ($(nam).attr("src") != undefined) {nam = "#bad-2";}
+              if ($(nam).attr("src") != undefined) {nam = "#bad-3";}
+
+              $(nam).attr("src", "http://localhost:5000/uploads/" + file.name)
+              $(nam).attr("height", "150")
+              $(nam).attr("width", "150")
             }
             else {
               // uh oh
