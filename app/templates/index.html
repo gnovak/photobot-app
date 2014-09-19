@@ -59,8 +59,7 @@
 
         <br><br>
         <form enctype="multipart/form-data" action="flask-upload"
-              class="dropzone" method="POST" id="demo-flask-upload"
-              id="my-awesome-dropzone">
+              class="dropzone" method="POST" id="my-awesome-dropzone">
           <!-- <input type="file" name="file"> -->
           <!-- <button type="submit" name="bar" class="btn btn large btn-success">Submit</button> -->
         </form>
@@ -76,5 +75,13 @@
     <script src="../static/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <!-- <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script> -->
+    <script>
+      Dropzone.options.myAwesomeDropzone = {
+        init: function() {
+          this.on("addedfile", function(file) { console.log(file); });
+        }
+      };
+    </script>
+
   </body>
 </html>
