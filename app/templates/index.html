@@ -64,6 +64,21 @@
           <!-- <button type="submit" name="bar" class="btn btn large btn-success">Submit</button> -->
         </form>
       </div>
+
+      <div>
+        GOOD
+        <img id='good-1' src="../static/images/HAL9000.svg.png" height="150" width="150">
+        <img id='good-2' src="../static/images/HAL9000.svg.png" height="150" width="150">
+        <img id='good-3' src="../static/images/HAL9000.svg.png" height="150" width="150">
+        END GOOD
+      </div>
+      <div>
+        BAD
+        <img id='bad-1' src="../static/images/HAL9000.svg.png" height="150" width="150">
+        <img id='bad-2' src="../static/images/HAL9000.svg.png" height="150" width="150">
+        <img id='bad-3' src="../static/images/HAL9000.svg.png" height="150" width="150">
+        END BAD
+      </div>
     </div><!-- /.container -->
 
 
@@ -79,6 +94,9 @@
       Dropzone.options.myAwesomeDropzone = {
         init: function() {
           this.on("addedfile", function(file) { console.log(file); });
+          this.on("success", function(file,response) { 
+            $("#good-1").attr("src", "http://localhost:5000/uploads/" + file.name)
+          });
         }
       };
     </script>
