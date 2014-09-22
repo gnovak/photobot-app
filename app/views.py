@@ -17,7 +17,7 @@ from flask import render_template,request,redirect,url_for,send_from_directory
 
 # import MySQLdb as mdb
 
-allowed_extensions = set(['jpg'])
+allowed_extensions = set(['jpg', 'jpeg', 'gif', 'png'])
 landing_upload_folder = "app/uploads-landing"
 raw_upload_folder = "app/uploads-raw"
 proc_upload_folder = "app/uploads-proc"
@@ -97,7 +97,9 @@ def uploaded_file():
     #
     # Might want to resize rather than crop so that I actually have
     # all the pixels contributing.
-    new_filename = os.path.join(proc_upload_folder, hash_fn + ext)
+    # Force image format to jpg.
+    new_ext = '.jpg'
+    new_filename = os.path.join(proc_upload_folder, hash_fn + new_ext)
     downsize = ['convert', # use convert not mogrify to not overwrite orig
            raw_filename, # input fn
            '-resize', '150x150^', # ^ => min size
