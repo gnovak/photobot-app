@@ -17,7 +17,13 @@ from flask import render_template,request,redirect,url_for,send_from_directory
 
 # import MySQLdb as mdb
 
-allowed_extensions = set(['jpg', 'jpeg', 'gif', 'png'])
+allowed_extensions = set(['jpg', 'jpeg', 'gif', 'png', 'dng', 'svg',
+                          'fts', 'fits', 'pdf', 'ps', 'eps', 'raw', 'bmp',
+                          'pcx', 'tif', 'tiff', 'tga', 'rgb',
+                          'JPG', 'JPEG', 'GIF', 'PNG', 'DNG', 'SVG',
+                          'FTS', 'FITS', 'PDF', 'PS', 'EPS', 'RAW', 'BMP',
+                          'PCX', 'TIF', 'TIFF', 'TGA', 'RGB'])
+
 landing_upload_folder = "app/uploads-landing"
 raw_upload_folder = "app/uploads-raw"
 proc_upload_folder = "app/uploads-proc"
