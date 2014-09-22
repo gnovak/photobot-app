@@ -15,15 +15,15 @@ import sklearn.svm
 import werkzeug
 from flask import render_template,request,redirect,url_for,send_from_directory
 
-import MySQLdb as mdb
+# import MySQLdb as mdb
 
 allowed_extensions = set(['jpg'])
 landing_upload_folder = "/Users/novak/Desktop/Insight/app-pbot/app/uploads-landing"
 raw_upload_folder = "/Users/novak/Desktop/Insight/app-pbot/app/uploads-raw"
 proc_upload_folder = "/Users/novak/Desktop/Insight/app-pbot/app/uploads-proc"
 
-db = mdb.connect(user="root", host="localhost", db="photobot", charset='utf8', 
-                 passwd='small irony yacht wok')
+# db = mdb.connect(user="root", host="localhost", db="photobot", charset='utf8', 
+#                  passwd='small irony yacht wok')
 
 # load the data
 with open('svm-fft-level-1.pkl') as ff:
