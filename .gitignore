@@ -1,10 +1,12 @@
 *.pyc
-app/uploads/
 app/static/css
 app/static/fonts
 app/static/images
 app/static/js
-
-app/uplaods-landing
-app/uplaods-proc
-app/uplaods-raw
+app/uploads-landing
+app/uploads-proc
+app/uploads-raw
+picpickr.log
+supervisord.pid
+svm-fft-level-1.pkl
+svm-fft-level-2.pkl
