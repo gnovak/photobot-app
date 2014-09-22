@@ -125,7 +125,7 @@ def uploads(filename):
 @app.route('/train', methods=['GET'])
 def train():
     image = request.args.get("filename")
-    prediction = request.args.get("photobot")
+    prediction = request.args.get("picpickr")
     success = request.args.get("agree")
     # Stuff these into a sql database
     with db:

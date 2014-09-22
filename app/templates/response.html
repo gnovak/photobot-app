@@ -38,7 +38,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">PhotoBot</a>
+          <a class="navbar-brand" href="#">PicPickr</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -60,13 +60,13 @@
         <img src="{{imageurl}}" alt="image" height="220" width="220">
       </div>
       <br>
-        <p class="lead">Photobot thinks your photo is {{resp}}</p> 
+        <p class="lead">PicPickr thinks your photo is {{resp}}</p> 
 
     <br><br>
     <p class="lead">Do you agree?</p>
 
     <form action="train" id="one" method="GET">
-      <input type="hidden" name="photobot" value="{{respbool}}">
+      <input type="hidden" name="picpickr" value="{{respbool}}">
       <input type="hidden" name="agree" value="TRUE">
       <input type="hidden" name="filename" value="{{filename}}"
       <br>       
@@ -76,7 +76,7 @@
     <br>
 
     <form action="train" id="two" method="GEt">
-      <input type="hidden" name="photobot" value="{{respbool}}">
+      <input type="hidden" name="pickpickr" value="{{respbool}}">
       <input type="hidden" name="agree" value="FALSE">      
       <input type="hidden" name="filename" value="{{filename}}"
       <br>
