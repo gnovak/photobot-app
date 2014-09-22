@@ -123,7 +123,20 @@
             <img src="../static/images/HAL9000.svg.png" alt="HAL" height="150" width="150">
           </div>
           <div class="col-sm-6 col-left">
-            <h3 class="text-left">Good Photos</h3><br>
+            <h3 class="text-left">Great Photos:</h3><br>
+            <img id="great-1" >
+            <img id="great-2" >
+            <img id="great-3" >
+            <img id="great-4" >
+            <img id="great-5" >
+          </div>
+        </div>
+        <div class="row row-left">
+          <div class="col-sm-3 text-left">
+            <!-- Empty -->
+          </div>
+          <div class="col-sm-6">
+            <h3 class="text-left">Good Photos:</h3><br>
             <img id="good-1" >
             <img id="good-2" >
             <img id="good-3" >
@@ -136,7 +149,7 @@
             <!-- Empty -->
           </div>
           <div class="col-sm-6">            
-            <h3 class="text-left">Bad Photos</h3><br>
+            <h3 class="text-left">Bad Photos:</h3><br>
             <img id="bad-1" >
             <img id="bad-2" >
             <img id="bad-3" >        
@@ -144,7 +157,6 @@
             <img id="bad-5" >        
           </div>
         </div>
-
         <div class="row row-left">
           <div class="col-sm-3 text-left">
             <!-- <form enctype="multipart/form-data" action="flask-upload" -->
@@ -223,6 +235,18 @@
       <!-- });  -->
 
       myDropzone.on("success", function(file,response) { 
+        if (response == "great") {
+          nam = "#great-1"
+          if ($(nam).attr("src") != undefined) {nam = "#great-2";}
+          if ($(nam).attr("src") != undefined) {nam = "#great-3";}
+          if ($(nam).attr("src") != undefined) {nam = "#great-4";}
+          if ($(nam).attr("src") != undefined) {nam = "#great-5";}
+
+          $(nam).attr("src", "http://localhost:5000/uploads/" + file.name)
+          $(nam).attr("height", "150")
+          $(nam).attr("width", "150")
+        }
+
         if (response == "good") { 
           nam = "#good-1" 
           if ($(nam).attr("src") != undefined) {nam = "#good-2";} 

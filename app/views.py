@@ -26,8 +26,11 @@ db = mdb.connect(user="root", host="localhost", db="photobot", charset='utf8',
                  passwd='small irony yacht wok')
 
 # load the data
-with open('demo-day-svm.pkl') as ff:
-    svm = cPickle.load(ff)
+with open('svm-fft-level-1.pkl') as ff:
+    svm_l1 = cPickle.load(ff)
+
+with open('svm-fft-level-2.pkl') as ff:
+    svm_l2 = cPickle.load(ff)
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -103,14 +106,16 @@ def uploaded_file():
     # read it
     im = ski.io.ImageCollection([new_filename])
     # convert to vector
-    vv = ims_to_rgb_vecs(im,downsample=256)
+    vv = ims_to_rgb_fourier_mag(im, downsample=256)
 
     # classify it
-    result = svm.predict(vv)[0]
+    r1 = svm_l1.predict(vv)[0]
+    r2 = svm_l2.predict(vv)[0]
 
     # No one sees this page, classification decision is gobbled up by java script.
-    if result > 0.5: response = "good"
-    else: response = "bad"
+    if r1 < 0.5: response = "bad"
+    elif r1 > 0.5 and r2 < 0.5: response = "good"
+    elif r1 > 0.5 and r2 > 0.5: response = "great"
     return response
 
 @app.route('/uploads/<filename>')
@@ -151,3 +156,40 @@ def ims_to_rgb_vecs(ims, downsample=1):
         else:
             raise ValueError
     return np.array(result)
+
+
+def ims_to_rgb_fourier(ims, downsample=1):
+    # downsample...
+    result = []
+
+    for im in ims:
+        # if im is already bw, do something dumb to make it look like color
+        if len(im.shape)==2:
+            the_im = np.zeros(im.shape + (3,))
+            the_im[:,:,0] = im
+            the_im[:,:,1] = im
+            the_im[:,:,2] = im
+            im = the_im
+
+        # Normalize pixel values to 0-1
+        im = im/256.0
+
+        rfft = np.fft.fft2(im[:,:,0])
+        gfft = np.fft.fft2(im[:,:,1])
+        bfft = np.fft.fft2(im[:,:,2])
+
+        # keep things order unity w/ norm factor that shows up in ffts
+        rfft /= rfft.size
+        gfft /= gfft.size
+        bfft /= bfft.size
+
+        # turn into vector and downsample
+        result.append(np.concatenate((rfft.reshape(-1)[::downsample],
+                                      gfft.reshape(-1)[::downsample],
+                                      bfft.reshape(-1)[::downsample])))
+
+    return np.array(result)
+
+def ims_to_rgb_fourier_mag(ims, downsample=1):
+    result = ims_to_rgb_fourier(ims, downsample=downsample)
+    return np.sqrt(result.real**2 + result.imag**2)
