@@ -46,7 +46,7 @@ def index():
     user = { } 
     return render_template("index.html", title="Blah")
     
-@app.route('/flask-upload', methods=['GET', 'POST'])
+@app.route('/flask-upload', methods=['POST'])
 def upload_file():
     if request.method == 'POST':
         file = request.files['file']
