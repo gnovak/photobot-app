@@ -25,6 +25,65 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+  <style>
+    html, body {
+      height: 100%;
+    }
+    #actions {
+      margin: 2em 0;
+    }
+
+
+    /* Mimic table appearance */
+    div.table {
+      display: table;
+    }
+    div.table .file-row {
+      display: table-row;
+    }
+    div.table .file-row > div {
+      display: table-cell;
+      vertical-align: top;
+      border-top: 1px solid #ddd;
+      padding: 8px;
+    }
+    div.table .file-row:nth-child(odd) {
+      background: #f9f9f9;
+    }
+
+
+
+    /* The total progress gets shown by event listeners */
+    #total-progress {
+      opacity: 0;
+      transition: opacity 0.3s linear;
+    }
+
+    /* Hide the progress bar when finished */
+    #previews .file-row.dz-success .progress {
+      opacity: 0;
+      transition: opacity 0.3s linear;
+    }
+
+    <!-- /* Hide the delete button initially */ -->
+    <!-- #previews .file-row .delete { -->
+    <!--   display: none; -->
+    <!-- } -->
+
+    <!-- /* Hide the start and cancel buttons and show the delete button */ -->
+
+    <!-- #previews .file-row.dz-success .start, -->
+    <!-- #previews .file-row.dz-success .cancel { -->
+    <!--   display: none; -->
+    <!-- } -->
+    <!-- #previews .file-row.dz-success .delete { -->
+    <!--   display: block; -->
+    <!-- } -->
+
+
+  </style>
+
   </head>
 
   <body>
@@ -51,20 +110,92 @@
     </div>
 
     <br><br><br><br>
-
     <div class="container">
 
       <div class="starter-template">
-        <img src="../static/images/HAL9000.svg.png" alt="HAL" height="220" width="220">
-
-        <br><br>
-        <form enctype="multipart/form-data" action="flask-upload"
-              class="lead" id="demo-flask-upload" method="POST">
-          <input type="file" name="file">
-          <br>
-          <button type="submit" name="bar" class="btn btn large btn-success">Submit</button>            
-          </form>
-
+        <div class="row row-left">
+          <h3>Drop photos anywhere on the page and PhotoBot will help
+          you sort the good ones from the bad ones!</h3>            
+          </div>
+        </div>
+        <div class="row row-left">
+          <div class="col-sm-3 text-left">
+            <img src="../static/images/HAL9000.svg.png" alt="HAL" height="150" width="150">
+          </div>
+          <div class="col-sm-6 col-left">
+            <h3 class="text-left">Great Photos:</h3><br>
+            <img id="great-1" >
+            <img id="great-2" >
+            <img id="great-3" >
+            <img id="great-4" >
+            <img id="great-5" >
+          </div>
+        </div>
+        <div class="row row-left">
+          <div class="col-sm-3 text-left">
+            <!-- Empty -->
+          </div>
+          <div class="col-sm-6">
+            <h3 class="text-left">Good Photos:</h3><br>
+            <img id="good-1" >
+            <img id="good-2" >
+            <img id="good-3" >
+            <img id="good-4" >
+            <img id="good-5" >
+          </div>
+        </div>
+        <div class="row row-left">
+          <div class="col-sm-3 text-left">
+            <!-- Empty -->
+          </div>
+          <div class="col-sm-6">            
+            <h3 class="text-left">Bad Photos:</h3><br>
+            <img id="bad-1" >
+            <img id="bad-2" >
+            <img id="bad-3" >        
+            <img id="bad-4" >        
+            <img id="bad-5" >        
+          </div>
+        </div>
+        <div class="row row-left">
+          <div class="col-sm-3 text-left">
+            <!-- <form enctype="multipart/form-data" action="flask-upload" -->
+            <!--       class="dropzone" method="POST" id="my-awesome-dropzone"> -->
+            <!-- </form> -->
+            <div class="table table-striped" class="files" id="previews">
+              <div id="template" class="file-row">
+                <!-- This is used as the file preview template -->
+                <div>
+                  <span class="preview"><img data-dz-thumbnail /></span>
+                </div>
+                <div>
+                  <p class="name" data-dz-name></p>
+                  <strong class="error text-danger" data-dz-errormessage></strong>
+                </div>
+                <div>
+                  <p class="size" data-dz-size></p>
+                  <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                    <div class="progress-bar progress-bar-success" style="width:0%;" data-dz-uploadprogress></div>
+                  </div>
+                </div>
+                <div>
+                  <!-- <button class="btn btn-primary start"> -->
+                  <!--     <i class="glyphicon glyphicon-upload"></i> -->
+                  <!--     <span>Start</span> -->
+                  <!-- </button> -->
+                  <!-- <button data-dz-remove class="btn btn-warning cancel"> -->
+                  <!--     <i class="glyphicon glyphicon-ban-circle"></i> -->
+                  <!--     <span>Cancel</span> -->
+                  <!-- </button> -->
+                  <!-- <button data-dz-remove class="btn btn-danger delete"> -->
+                  <!--   <i class="glyphicon glyphicon-trash"></i> -->
+                  <!--   <span>Delete</span> -->
+                  <!-- </button> -->
+                </div>
+              </div>
+            </div>            
+          </div>          
+        </div>
       </div>
     </div><!-- /.container -->
 
@@ -72,9 +203,101 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../static/js/dropzone.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="../static/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <!-- <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script> -->
+    <script>
+      // Get the template HTML and remove it from the doument
+      var previewNode = document.querySelector("#template");
+      previewNode.id = "";
+      var previewTemplate = previewNode.parentNode.innerHTML;
+      previewNode.parentNode.removeChild(previewNode);
+
+      var myDropzone = new Dropzone(document.body, { // Make the whole body a dropzone
+        url: "flask-upload", // Set the url
+        thumbnailWidth: 40,
+        thumbnailHeight: 40,
+        previewTemplate: previewTemplate,
+        previewsContainer: "#previews", // Define the container to display the previews
+        <!-- clickable: ".fileinput-button" // Define the element that should be used as click trigger to select files. -->
+      });
+
+      <!-- myDropzone.on("addedfile", function(file) { -->
+      <!--   // Hookup the start button -->
+      <!--   file.previewElement.querySelector(".start").onclick = function() { myDropzone.enqueueFile(file); }; -->
+      <!-- }); -->
+
+      <!-- // Update the total progress bar -->
+      <!-- myDropzone.on("totaluploadprogress", function(progress) {  -->
+      <!--   document.querySelector("#total-progress .progress-bar").style.width = progress + "%";  -->
+      <!-- });  -->
+
+      myDropzone.on("success", function(file,response) { 
+        if (response == "great") {
+          nam = "#great-1"
+          if ($(nam).attr("src") != undefined) {nam = "#great-2";}
+          if ($(nam).attr("src") != undefined) {nam = "#great-3";}
+          if ($(nam).attr("src") != undefined) {nam = "#great-4";}
+          if ($(nam).attr("src") != undefined) {nam = "#great-5";}
+
+          $(nam).attr("src", "http://localhost:5000/uploads/" + file.name)
+          $(nam).attr("height", "150")
+          $(nam).attr("width", "150")
+        }
+
+        if (response == "good") { 
+          nam = "#good-1" 
+          if ($(nam).attr("src") != undefined) {nam = "#good-2";} 
+          if ($(nam).attr("src") != undefined) {nam = "#good-3";} 
+          if ($(nam).attr("src") != undefined) {nam = "#good-4";} 
+          if ($(nam).attr("src") != undefined) {nam = "#good-5";} 
+
+          $(nam).attr("src", "http://localhost:5000/uploads/" + file.name) 
+          $(nam).attr("height", "150") 
+          $(nam).attr("width", "150") 
+        } 
+        else if (response == "bad") { 
+          nam = "#bad-1" 
+          if ($(nam).attr("src") != undefined) {nam = "#bad-2";} 
+          if ($(nam).attr("src") != undefined) {nam = "#bad-3";} 
+          if ($(nam).attr("src") != undefined) {nam = "#bad-4";} 
+          if ($(nam).attr("src") != undefined) {nam = "#bad-5";} 
+
+          $(nam).attr("src", "http://localhost:5000/uploads/" + file.name) 
+          $(nam).attr("height", "150") 
+          $(nam).attr("width", "150") 
+        } 
+        else { 
+          // uh oh 
+        } 
+        console.log(response) 
+      }); 
+
+
+      <!-- myDropzone.on("sending", function(file) {  -->
+      <!--   // Show the total progress bar when upload starts  -->
+      <!--   document.querySelector("#total-progress").style.opacity = "1";  -->
+      <!--   // And disable the start button  -->
+      <!--   file.previewElement.querySelector(".start").setAttribute("disabled", "disabled");  -->
+      <!-- });  -->
+
+      <!-- // Hide the total progress bar when nothing's uploading anymore -->
+      <!-- myDropzone.on("queuecomplete", function(progress) {  -->
+      <!--   document.querySelector("#total-progress").style.opacity = "0";  -->
+      <!-- });  -->
+
+      // Setup the buttons for all transfers
+      // The "add files" button doesn't need to be setup because the config
+      // `clickable` has already been specified.
+      <!-- document.querySelector("#actions .start").onclick = function() { -->
+      <!--   myDropzone.enqueueFiles(myDropzone.getFilesWithStatus(Dropzone.ADDED)); -->
+      <!-- }; -->
+      <!-- document.querySelector("#actions .cancel").onclick = function() { -->
+      <!--   myDropzone.removeAllFiles(true); -->
+      <!-- }; -->
+    </script>
+
   </body>
 </html>
