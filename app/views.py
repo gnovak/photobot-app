@@ -18,9 +18,12 @@ from flask import render_template,request,redirect,url_for,send_from_directory
 # import MySQLdb as mdb
 
 allowed_extensions = set(['jpg'])
-landing_upload_folder = "/Users/novak/Desktop/Insight/app-pbot/app/uploads-landing"
-raw_upload_folder = "/Users/novak/Desktop/Insight/app-pbot/app/uploads-raw"
-proc_upload_folder = "/Users/novak/Desktop/Insight/app-pbot/app/uploads-proc"
+landing_upload_folder = "app/uploads-landing"
+raw_upload_folder = "app/uploads-raw"
+proc_upload_folder = "app/uploads-proc"
+
+# Can't figure out how to make this one relative
+serve_upload_folder = "/home/ubuntu/photobot-app/app/uploads-raw"
 
 # db = mdb.connect(user="root", host="localhost", db="photobot", charset='utf8', 
 #                  passwd='small irony yacht wok')
@@ -120,7 +123,7 @@ def uploaded_file():
 
 @app.route('/uploads/<filename>')
 def uploads(filename):
-    return send_from_directory(raw_upload_folder,filename)
+    return send_from_directory(serve_upload_folder,filename)
 
 @app.route('/train', methods=['GET'])
 def train():
