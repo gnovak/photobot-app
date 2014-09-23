@@ -13,7 +13,7 @@ import sklearn as skl
 import sklearn.svm
 
 import werkzeug
-from flask import render_template,request,redirect,url_for,send_from_directory
+from flask import render_template,request,redirect,url_for,send_from_directory, jsonify
 
 # import MySQLdb as mdb
 
@@ -127,7 +127,8 @@ def uploaded_file():
     if r1 < 0.5: response = "bad"
     elif r1 > 0.5 and r2 < 0.5: response = "good"
     elif r1 > 0.5 and r2 > 0.5: response = "great"
-    return response
+
+    return jsonify(dict(filename=filename, result=response))
 
 @app.route('/uploads/<filename>')
 def uploads(filename):

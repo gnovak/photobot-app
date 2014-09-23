@@ -235,44 +235,43 @@
       <!-- });  -->
 
       myDropzone.on("success", function(file,response) { 
-        if (response == "great") {
+        if (response['result'] == "great") {
           nam = "#great-1"
           if ($(nam).attr("src") != undefined) {nam = "#great-2";}
           if ($(nam).attr("src") != undefined) {nam = "#great-3";}
           if ($(nam).attr("src") != undefined) {nam = "#great-4";}
           if ($(nam).attr("src") != undefined) {nam = "#great-5";}
 
-          $(nam).attr("src", "uploads/" + file.name)
+          $(nam).attr("src", "uploads/" + response['filename'])
           $(nam).attr("height", "150")
           $(nam).attr("width", "150")
         }
 
-        if (response == "good") { 
+        if (response['result'] == "good") {
           nam = "#good-1" 
           if ($(nam).attr("src") != undefined) {nam = "#good-2";} 
           if ($(nam).attr("src") != undefined) {nam = "#good-3";} 
           if ($(nam).attr("src") != undefined) {nam = "#good-4";} 
           if ($(nam).attr("src") != undefined) {nam = "#good-5";} 
 
-          $(nam).attr("src", "uploads/" + file.name) 
+          $(nam).attr("src", "uploads/" + response['filename'])
           $(nam).attr("height", "150") 
           $(nam).attr("width", "150") 
         } 
-        else if (response == "bad") { 
+        else if (response['result'] == "bad") {
           nam = "#bad-1" 
           if ($(nam).attr("src") != undefined) {nam = "#bad-2";} 
           if ($(nam).attr("src") != undefined) {nam = "#bad-3";} 
           if ($(nam).attr("src") != undefined) {nam = "#bad-4";} 
           if ($(nam).attr("src") != undefined) {nam = "#bad-5";} 
 
-          $(nam).attr("src", "uploads/" + file.name) 
+          $(nam).attr("src", "uploads/" + response['filename'])
           $(nam).attr("height", "150") 
           $(nam).attr("width", "150") 
         } 
         else { 
           // uh oh 
         } 
-        console.log(response) 
       }); 
 
 
