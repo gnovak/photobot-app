@@ -235,6 +235,7 @@
       <!-- });  -->
 
       myDropzone.on("success", function(file,response) { 
+        $("#previews")[0].children[0].remove()
         if (response['result'] == "great") {
           nam = "#great-1"
           if ($(nam).attr("src") != undefined) {nam = "#great-2";}
@@ -272,8 +273,8 @@
         else { 
           // uh oh 
         } 
-      }); 
 
+      });
 
       <!-- myDropzone.on("sending", function(file) {  -->
       <!--   // Show the total progress bar when upload starts  -->
