@@ -30,7 +30,7 @@ proc_upload_folder = "app/uploads-proc"
 
 # Can't figure out how to make this one relative
 serve_upload_folder = "/home/ubuntu/photobot-app/app/uploads-raw"
-image_upload_folder = "/Users/novak/Desktop/Insight/app-pbot/app/images"
+image_upload_folder = "/home/ubuntu/photobot-app/app/images"
 
 # db = mdb.connect(user="root", host="localhost", db="photobot", charset='utf8', 
 #                  passwd='small irony yacht wok')
