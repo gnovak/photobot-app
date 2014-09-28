@@ -29,7 +29,7 @@ raw_upload_folder = "app/uploads-raw"
 proc_upload_folder = "app/uploads-proc"
 
 # Can't figure out how to make this one relative
-serve_upload_folder = "/home/ubuntu/photobot-app/app/uploads-raw"
+serve_upload_folder = "/home/ubuntu/photobot-app/app/uploads-proc"
 image_upload_folder = "/home/ubuntu/photobot-app/app/images"
 
 # db = mdb.connect(user="root", host="localhost", db="photobot", charset='utf8', 
