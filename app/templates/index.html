@@ -80,7 +80,18 @@
     <!-- #previews .file-row.dz-success .delete { -->
     <!--   display: block; -->
     <!-- } -->
+    .jumbotron {
+      margin-bottom: 0px;
+      background-image: url(images/background.jpg);
+      background-position: 0% 25%;
+      background-size: cover;
+      background-repeat: no-repeat;
+      color: white;
+    }
 
+    .mythumbnail {
+      padding: 1px;
+    }
 
   </style>
 
@@ -109,23 +120,23 @@
       </div>
     </div>
 
+    <div class="jumbotron">
+      <h2>Drop photos anywhere on the page and PicPickr will help
+        you find the best ones!</h2>
+      <p class="text-right">You can also <button id="gsn" onclick="sample_photos();">use sample photos</button></p>
+    </div>
+
     <div class="container">
       <div class="starter-template">
         <row> <!-- First Row -->
-          <div class="col-sm-3">
-            <img src="../static/images/HAL9000.svg.png" alt="HAL"
-                 height="100" width="100">
-          </div>
-          <div class="col-sm-9 text-left">
-            <h4>Drop photos anywhere on the page and PicPickr will help
-              you find the best ones!</h4>
+          <div class="col-sm-12 text-left">
             <p>PicPickr works best with landscape photos.  PicPickr
-              doesn't understand photos with people in them very well.  </p>
+              doesn't understand photos with people in them very well.</p>
           </div>
         </row>
 
-        <row> <!-- Second Row headers -->
-          <div class="col-sm-3">
+        <row> <!-- Second Row -->
+          <div class="col-sm-12">
             <div class="table table-striped" class="files" id="previews">
               <div id="template" class="file-row">
                 <!-- This is used as the file preview template -->
@@ -145,11 +156,14 @@
               </div>
             </div>
           </div>
+        </row>
 
-          <div class="col-sm-3 panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title">Great</h3>
-            </div>
+        <row> <!-- Third Row -->
+          <div class="col-sm-4">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Great</h3>
+              </div>
             <div class="panel-body">
               <img id="great-1" >
               <img id="great-2" >
@@ -157,12 +171,14 @@
               <img id="great-4" >
               <img id="great-5" >
             </div>
+            </div>
           </div>
 
-          <div class="col-sm-3 panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title">Good</h3>
-            </div>
+          <div class="col-sm-4">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Good</h3>
+              </div>
             <div class="panel-body">
               <img id="good-1" >
               <img id="good-2" >
@@ -170,18 +186,21 @@
               <img id="good-4" >
               <img id="good-5" >
             </div>
+            </div>
           </div>
 
-          <div class="col-sm-3 panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title">Bad</h3>
-            </div>
+          <div class="col-sm-4">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Unimpressive</h3>
+              </div>
             <div class="panel-body">
               <img id="bad-1" >
               <img id="bad-2" >
               <img id="bad-3" >
               <img id="bad-4" >
               <img id="bad-5" >
+            </div>
             </div>
           </div>
         </row>

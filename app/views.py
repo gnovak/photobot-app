@@ -134,6 +134,10 @@ def uploaded_file():
 def uploads(filename):
     return send_from_directory(serve_upload_folder,filename)
 
+@app.route('/images/<filename>')
+def images(filename):
+    return send_from_directory(image_upload_folder,filename)
+
 @app.route('/train', methods=['GET'])
 def train():
     image = request.args.get("filename")
