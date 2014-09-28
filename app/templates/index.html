@@ -164,13 +164,9 @@
               <div class="panel-heading">
                 <h3 class="panel-title">Great</h3>
               </div>
-            <div class="panel-body">
-              <img id="great-1" >
-              <img id="great-2" >
-              <img id="great-3" >
-              <img id="great-4" >
-              <img id="great-5" >
-            </div>
+              <div id="great" class="panel-body text-left">
+                <!-- Will contain images -->
+              </div>
             </div>
           </div>
 
@@ -179,13 +175,9 @@
               <div class="panel-heading">
                 <h3 class="panel-title">Good</h3>
               </div>
-            <div class="panel-body">
-              <img id="good-1" >
-              <img id="good-2" >
-              <img id="good-3" >
-              <img id="good-4" >
-              <img id="good-5" >
-            </div>
+              <div id="good" class="panel-body text-left">
+                <!-- Will contain images -->
+              </div>
             </div>
           </div>
 
@@ -194,13 +186,9 @@
               <div class="panel-heading">
                 <h3 class="panel-title">Unimpressive</h3>
               </div>
-            <div class="panel-body">
-              <img id="bad-1" >
-              <img id="bad-2" >
-              <img id="bad-3" >
-              <img id="bad-4" >
-              <img id="bad-5" >
-            </div>
+              <div id="bad" class="panel-body text-left">
+                <!-- Will contain images -->
+              </div>
             </div>
           </div>
         </row>
@@ -242,47 +230,30 @@
       <!--   document.querySelector("#total-progress .progress-bar").style.width = progress + "%";  -->
       <!-- });  -->
 
-      myDropzone.on("success", function(file,response) { 
-        $("#previews")[0].children[0].remove()
-        if (response['result'] == "great") {
-          nam = "#great-1"
-          if ($(nam).attr("src") != undefined) {nam = "#great-2";}
-          if ($(nam).attr("src") != undefined) {nam = "#great-3";}
-          if ($(nam).attr("src") != undefined) {nam = "#great-4";}
-          if ($(nam).attr("src") != undefined) {nam = "#great-5";}
+      function sort_uploaded_photo(file,response) {
+        $("#previews")[0].children[0].remove();
+        sort_photo(response);
+      }
 
-          $(nam).attr("src", "uploads/" + response['filename'])
-          $(nam).attr("height", "150")
-          $(nam).attr("width", "150")
-        }
+      function sort_photo(response) {
+        elem = '<img class="mythumbnail" width="150" height="150" src="uploads/' + response['filename'] + '" >';
+        loc = "#" + response['result'];
+        $(loc).append(elem);
+      }
 
-        if (response['result'] == "good") {
-          nam = "#good-1" 
-          if ($(nam).attr("src") != undefined) {nam = "#good-2";} 
-          if ($(nam).attr("src") != undefined) {nam = "#good-3";} 
-          if ($(nam).attr("src") != undefined) {nam = "#good-4";} 
-          if ($(nam).attr("src") != undefined) {nam = "#good-5";} 
+      function sample_photos () {
+        sort_photo({filename: "13799251124_1924e3681f_q.jpg", result: "great"});
 
-          $(nam).attr("src", "uploads/" + response['filename'])
-          $(nam).attr("height", "150") 
-          $(nam).attr("width", "150") 
-        } 
-        else if (response['result'] == "bad") {
-          nam = "#bad-1" 
-          if ($(nam).attr("src") != undefined) {nam = "#bad-2";} 
-          if ($(nam).attr("src") != undefined) {nam = "#bad-3";} 
-          if ($(nam).attr("src") != undefined) {nam = "#bad-4";} 
-          if ($(nam).attr("src") != undefined) {nam = "#bad-5";} 
+        sort_photo({filename: "466988266_7e124437e1_q.jpg", result: "good"});
+        sort_photo({filename: "1072046663_e65f57d187_q.jpg", result: "good"});
+        sort_photo({filename: "jamaica-beach.jpg", result: "good"});
 
-          $(nam).attr("src", "uploads/" + response['filename'])
-          $(nam).attr("height", "150") 
-          $(nam).attr("width", "150") 
-        } 
-        else { 
-          // uh oh 
-        } 
+        sort_photo({filename: "5692330291_dc58d7f9b6_q.jpg", result: "bad"});
+        sort_photo({filename: "5692384173_c0f56a7227_q.jpg", result: "bad"});
+        sort_photo({filename: "5701912747_7f65de7e83.jpg", result: "bad"});
+      }
 
-      });
+      myDropzone.on("success", sort_uploaded_photo);
 
       <!-- myDropzone.on("sending", function(file) {  -->
       <!--   // Show the total progress bar when upload starts  -->
