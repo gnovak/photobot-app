@@ -36,10 +36,10 @@ image_upload_folder = "/home/ubuntu/photobot-app/app/images"
 #                  passwd='small irony yacht wok')
 
 # load the data
-with open('svm-fft-level-1.pkl') as ff:
+with open('svm-level-1.pkl') as ff:
     svm_l1 = cPickle.load(ff)
 
-with open('svm-fft-level-2.pkl') as ff:
+with open('svm-level-2.pkl') as ff:
     svm_l2 = cPickle.load(ff)
 
 def allowed_file(filename):
