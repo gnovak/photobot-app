@@ -112,6 +112,7 @@ def uploaded_file():
            '-resize', '150x150^', # ^ => min size
            '-gravity', 'center',  # do crop in center of photo
            '-crop', '150x150+0+0', # crop to 150x150 square
+           '-auto-orient', # orient the photo
            new_filename] # output fn
     subprocess.call(downsize)
 
