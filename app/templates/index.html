@@ -213,7 +213,9 @@
         $(loc).append(elem);
       }
 
+      have_not_added_samples = true;
       function sample_photos () {
+        if (have_not_added_samples) {
         sort_photo({filename: "13799251124_1924e3681f_q.jpg", result: "great"});
 
         sort_photo({filename: "466988266_7e124437e1_q.jpg", result: "good"});
@@ -223,6 +225,8 @@
         sort_photo({filename: "5692330291_dc58d7f9b6_q.jpg", result: "bad"});
         sort_photo({filename: "5692384173_c0f56a7227_q.jpg", result: "bad"});
         sort_photo({filename: "5701912747_7f65de7e83.jpg", result: "bad"});
+      }
+        have_not_added_samples = false;
       }
 
       myDropzone.on("success", sort_uploaded_photo);
