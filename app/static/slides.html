@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <style>
+            section {
+              background: black;
+            }
+
+            #body {
+              background: black;
+            }
+
+            img {
+              width: 100%;
+              height: auto;
+            }
+    	</style>
+        <link rel="icon" href="http://www.picpickr.com/static/favicon.ico">
+    </head>
+    <body onload="document.body.style.background = 'black';">
+	<section>
+	  <img src="slides/demo-wide.001.jpg" />
+	</section>
+
+	<section>
+	  <img src="slides/demo-wide.002.jpg" />
+	</section>
+
+	<section>
+	  <img src="slides/demo-wide.003.jpg" />
+	</section>
+
+	<section>
+	  <img src="slides/demo-wide.004.jpg" />
+	</section>
+
+	<section>
+	  <img src="slides/demo-wide.005.jpg" />
+	</section>
+
+	<section>
+	  <img src="slides/demo-wide.006.jpg" />
+	</section>
+
+	<section>
+	  <img src="slides/demo-wide.007.jpg" />
+	</section>
+
+	<section>
+	  <img src="slides/demo-wide.008.jpg" />
+	</section>
+
+	<section>
+	  <img src="slides/demo-wide.009.jpg" />
+	</section>
+
+	<section>
+	  <img src="slides/demo-wide.010.jpg" />
+	</section>
+
+	<section>
+	  <img src="slides/demo-wide.011.jpg" />
+	</section>
+
+	<section>
+	  <img src="slides/demo-wide.012.jpg" />
+	</section>
+
+	<section>
+	  <img src="slides/demo-wide.013.jpg" />
+	</section>
+
+	<script src="../static/js/d3.v3.min.js"></script>
+	<script src="../static/js/stack.v1.min.js"></script>
+	<script>
+
+	var mystack = stack()
+	    .on("activate", activate)
+	    .on("deactivate", deactivate);
+
+	var section = d3.selectAll("section"),
+	    follow = d3.select("#follow"),
+	    followAnchor = d3.select("#follow-anchor"),
+	    lorenz = d3.select("#lorenz"),
+	    followIndex = section[0].indexOf(follow.node()),
+	    lorenzIndex = section[0].indexOf(lorenz.node());
+
+	function refollow() {
+	  followAnchor.style("top", (followIndex + (1 - mystack.scrollRatio()) / 2 - d3.event.offset) * 100 + "%");
+	}
+
+	function activate(d, i) {
+	  if (i === followIndex) mystack.on("scroll.follow", refollow);
+	  if (i === lorenzIndex) startLorenz();
+	}
+
+	function deactivate(d, i) {
+	  if (i === followIndex) mystack.on("scroll.follow", null);
+	  if (i === lorenzIndex) stopLorenz();
+	}
+
+
+        </script>
+    </body>
+</html>
