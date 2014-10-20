@@ -77,11 +77,11 @@ def upload_file():
 def uploaded_file():
     filename = request.args.get("filename")
     base, ext = os.path.splitext(filename)
-    orig_filename = os.path.join(landing_upload_folder, filename)
+    orig_path = os.path.join(landing_upload_folder, filename)
 
     # Get 'permanent' filename from sha1 digest of file contents
     sha = hashlib.sha1()
-    with open(orig_filename, 'rb') as ff:
+    with open(orig_path, 'rb') as ff:
         # Read the while file and digest it... would be good to be
         # more intelligent about this part....
         sha.update(ff.read(-1))
@@ -90,10 +90,10 @@ def uploaded_file():
     hash_fn = base
 
     # Move file out of landing zone
-    raw_filename = os.path.join(raw_upload_folder, hash_fn + ext)
+    raw_path = os.path.join(raw_upload_folder, hash_fn + ext)
 
-    shutil.copy(orig_filename, raw_filename)
-    #shutil.move(orig_filename, raw_filename)
+    shutil.copy(orig_path, raw_path)
+    #shutil.move(orig_path, raw_path)
 
     # Add error handling:
     # try: subprocess.check_call(blah)
@@ -106,18 +106,19 @@ def uploaded_file():
     # all the pixels contributing.
     # Force image format to jpg.
     new_ext = '.jpg'
-    new_filename = os.path.join(proc_upload_folder, hash_fn + new_ext)
+    new_filename = hash_fn + new_ext
+    new_path = os.path.join(proc_upload_folder, new_filename)
     downsize = ['convert', # use convert not mogrify to not overwrite orig
-           raw_filename, # input fn
+           raw_path, # input fn
            '-resize', '150x150^', # ^ => min size
            '-gravity', 'center',  # do crop in center of photo
            '-crop', '150x150+0+0', # crop to 150x150 square
            '-auto-orient', # orient the photo
-           new_filename] # output fn
+           new_path] # output fn
     subprocess.call(downsize)
 
     # read it
-    im = ski.io.ImageCollection([new_filename])
+    im = ski.io.ImageCollection([new_path])
     # convert to vector
     vv = ims_to_rgb_fourier_mag(im, downsample=256)
 
@@ -130,7 +131,7 @@ def uploaded_file():
     elif r1 > 0.5 and r2 < 0.5: response = "good"
     elif r1 > 0.5 and r2 > 0.5: response = "great"
 
-    return jsonify(dict(filename=filename, result=response))
+    return jsonify(dict(filename=new_filename, result=response))
 
 @app.route('/uploads/<filename>')
 def uploads(filename):
